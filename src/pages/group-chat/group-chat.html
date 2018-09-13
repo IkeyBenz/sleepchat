@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ groupTitle }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="chatFeed">
+    <ion-item *ngFor="let message of chatFeed">
+      <p>{{ message.author }}</p>
+      <h2>{{ message.message }}</h2>
+    </ion-item>
+  </div>
+  <ion-item icon-end>
+    <ion-input type="text"[(ngModel)]="newMessage" placeholder="New Message"></ion-input>
+    <button ion-button item-end (click)="postMessage()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-item>
+</ion-content>

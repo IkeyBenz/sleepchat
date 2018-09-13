@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Create Group</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-label floating>Group Name:</ion-label>
+        <ion-input type="text" [(ngModel)]="groupName"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Group Password:</ion-label>
+        <ion-input type="text" [(ngModel)]="groupPassword"></ion-input>
+    </ion-item>
+    <button ion-button full (click)="createGroup()">Create!</button>
+</ion-content>
