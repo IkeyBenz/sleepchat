@@ -11,6 +11,7 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
+src/app/firebaseConfig.js
 
 .idea/
 .ionic/
