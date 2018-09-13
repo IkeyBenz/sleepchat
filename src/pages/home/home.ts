@@ -9,7 +9,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  hasGroup;
   constructor(public navCtrl: NavController,
     private afAuth: AngularFireAuth,
     private afDb: AngularFireDatabase) {
@@ -26,7 +26,7 @@ export class HomePage {
     let uid = this.afAuth.auth.currentUser.uid;
     let hasGroup = await this.afDb.database.ref(`Users/${uid}/group`).once('value');
     if (hasGroup.val()) {
-      this.navCtrl.push('GroupChatPage');
+      this.hasGroup = true;
     }
   }
   createGroup() {
