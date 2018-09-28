@@ -3,13 +3,14 @@ let afDb: AngularFireDatabase;
 let db = afDb.database;
 
 export const Groups = {
-    getGroupWithId:                 (id) =>             get(id),
-    createGroup:   (name, password) => create(name, password),
-    addMemberTo:   (groupId, memberName) =>        addMember(groupId, memberName),
-    addPostToFeed:      (groupId, post) =>              postFeed(groupId, post),
-    updateName:         (groupId, newName) =>           update(groupId, newName, 'name'),
-    updatePassword:     (groupId, newPassword) =>       update(groupId, newPassword, 'password'),
-    listMembers:        (groupId) =>                    listMembers(groupId)
+    getGroupWithId: (groupId) =>              get(groupId),
+    listMembers:    (groupId) =>              listMembers(groupId),
+    createGroup:    (name, password) =>       create(name, password),
+    addPostToFeed:  (groupId, newPost) =>     postFeed(groupId, newPost),
+    updateName:     (groupId, newName) =>     update(groupId, newName, 'name'),
+    updateSettings: (groupId, settings) =>    update(groupId, settings, 'settings'),
+    addMemberTo:    (groupId, memberName) =>  addMember(groupId, memberName),
+    updatePassword: (groupId, newPassword) => update(groupId, newPassword, 'password')
 }
 
 function get(id) {
