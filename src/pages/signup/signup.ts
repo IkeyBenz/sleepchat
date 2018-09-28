@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
-@IonicPage()
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',

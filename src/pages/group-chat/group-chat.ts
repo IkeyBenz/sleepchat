@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-group-chat',
   templateUrl: 'group-chat.html',
@@ -22,8 +21,8 @@ export class GroupChatPage {
   }
   ionViewDidLoad() {
     console.log('loaded gc page');
-    this.loadTitle();
-    this.loadChat();
+    // this.loadTitle();
+    // this.loadChat();
   }
   async loadChat() {
     let uid = this.afAuth.auth.currentUser.uid;

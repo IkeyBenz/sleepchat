@@ -4,7 +4,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-create',
   templateUrl: 'create.html',

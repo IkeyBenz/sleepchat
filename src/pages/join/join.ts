@@ -4,7 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
 
-@IonicPage()
+
 @Component({
   selector: 'page-join',
   templateUrl: 'join.html',
@@ -40,14 +40,14 @@ export class JoinPage {
     }
   }
   ionViewDidLoad() {
-    this.afAuth.auth.onAuthStateChanged(user => {
-      if (user) {
-        this.currentUser = user;
-      } else {
-        this.showToast("You're not logged in.");
-        this.navCtrl.setRoot('LoginPage');
-      }
-    });
+    // this.afAuth.auth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     this.currentUser = user;
+    //   } else {
+    //     this.showToast("You're not logged in.");
+    //     this.navCtrl.setRoot('LoginPage');
+    //   }
+    // });
   }
   getCurrentMemberIndex(groupId) {
     return new Promise(function(resolve, reject) {

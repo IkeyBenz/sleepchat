@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,11 +15,11 @@ export class HomePage {
 
   }
   ionViewDidLoad() {
-    if (this.afAuth.auth.currentUser) {
-      this.checkShit();
-    } else {
-      this.navCtrl.push('LoginPage');
-    }
+    // if (this.afAuth.auth.currentUser) {
+    //   this.checkShit();
+    // } else {
+    //   this.navCtrl.push('LoginPage');
+    // }
   }
   async checkShit() {
     let uid = this.afAuth.auth.currentUser.uid;

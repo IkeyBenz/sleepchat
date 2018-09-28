@@ -3,12 +3,13 @@ let afDb: AngularFireDatabase;
 let db = afDb.database;
 
 export const Groups = {
-    getGroupWithId: (id) => get(id),
-    createGroupWithNameAndPassword: (name, password) => create(name, password),
-    addMemberTo: (groupId, memberName) => addMember(groupId, memberName),
-    addPostToFeed: (groupId, post) => postFeed(groupId, post),
-    updateName: (groupId, newName) => update(groupId, newName, 'name'),
-    updatePassword: (groupId, newPassword) => update(groupId, newPassword, 'password')
+    getGroupWithId:                 (id) =>             get(id),
+    createGroup:   (name, password) => create(name, password),
+    addMemberTo:   (groupId, memberName) =>        addMember(groupId, memberName),
+    addPostToFeed:      (groupId, post) =>              postFeed(groupId, post),
+    updateName:         (groupId, newName) =>           update(groupId, newName, 'name'),
+    updatePassword:     (groupId, newPassword) =>       update(groupId, newPassword, 'password'),
+    listMembers:        (groupId) =>                    listMembers(groupId)
 }
 
 function get(id) {
@@ -80,6 +81,21 @@ function update(groupId, updated, valueType) {
                 resolve();
             } else {
                 reject("Group does not exist.");
+            }
+        });
+    });
+}
+function listMembers(groupId) {
+    return new Promise(function(resolve, reject) {
+        db.ref(`Groups/${groupId}`).once('value').then(snapshot => {
+            if (snapshot.val()) {
+                let names = [];
+                for (let userName of snapshot.val().Users) {
+                    names.push(userName);
+                }
+                resolve(names);
+            } else {
+                reject('Group does not exist.');
             }
         });
     });

@@ -10,12 +10,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { GroupChatPage } from '../pages/group-chat/group-chat';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    GroupChatPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +27,7 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    GroupChatPage
   ],
   providers: [
     StatusBar,
