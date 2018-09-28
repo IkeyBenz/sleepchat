@@ -1,5 +1,6 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 let afDb: AngularFireDatabase;
+let db = afDb.database;
 
 export const Groups = {
     getGroupWithId: (id) => get(id),
@@ -12,7 +13,7 @@ export const Groups = {
 
 function get(id) {
     return new Promise(function(resolve, reject) {
-        afDb.database.ref(`Groups/${id}`).once('value')
+        db.ref(`Groups/${id}`).once('value')
         .then(snapshot => {
             if (snapshot.val()) {
                 resolve(snapshot.val());
@@ -24,7 +25,7 @@ function get(id) {
 }
 function create(name, password) {
     return new Promise(function(resolve, reject) {
-        afDb.database.ref(`Groups`).orderByChild('password').equalTo(name).once('value')
+        db.ref(`Groups`).orderByChild('password').equalTo(name).once('value')
         .then(snapshot => {
             let groups = snapshot.val();
             if (groups) {
@@ -35,7 +36,7 @@ function create(name, password) {
                 }
             }
         });
-        let groupId = afDb.database.ref('Groups').push({
+        let groupId = db.ref('Groups').push({
             'members': [],
             'name': name,
             'password': password,
@@ -46,10 +47,10 @@ function create(name, password) {
 }
 function postFeed(groupId, post) {
     return new Promise(function(resolve, reject) {
-        afDb.database.ref(`Groups/${groupId}`).once('value').then(snapshot => {
+        db.ref(`Groups/${groupId}`).once('value').then(snapshot => {
             if (snapshot.val()) {
                 let postIndex = snapshot.val().feed.length
-                afDb.database.ref(`Groups/${groupId}/feed/${postIndex}`).set(post);
+                db.ref(`Groups/${groupId}/feed/${postIndex}`).set(post);
                 resolve();
             } else {
                 reject("Group does not exist.");
@@ -59,11 +60,11 @@ function postFeed(groupId, post) {
 }
 function addMember(groupId, memberName) {
     return new Promise(function(resolve, reject) {
-        afDb.database.ref(`Groups/${groupId}`).once('value')
+        db.ref(`Groups/${groupId}`).once('value')
         .then(snapshot => {
             if (snapshot.val()) {
                 let index = snapshot.val().members.length || 0;
-                afDb.database.ref(`Groups/${groupId}/members/${index}`).set(memberName);
+                db.ref(`Groups/${groupId}/members/${index}`).set(memberName);
                 resolve();
             } else {
                 reject("Group doesn't exist");
@@ -73,9 +74,9 @@ function addMember(groupId, memberName) {
 }
 function update(groupId, updated, valueType) {
     return new Promise(function(resolve, reject) {
-        afDb.database.ref(`Groups/${groupId}`).once('value').then(snapshot => {
+        db.ref(`Groups/${groupId}`).once('value').then(snapshot => {
             if (snapshot.val()) {
-                afDb.database.ref(`Groups/${groupId}/${valueType}`).set(updated);
+                db.ref(`Groups/${groupId}/${valueType}`).set(updated);
                 resolve();
             } else {
                 reject("Group does not exist.");
